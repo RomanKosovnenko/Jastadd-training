@@ -1,0 +1,12 @@
+aspect Evaluation {
+
+  syn float Exp.eval();
+  //eq Exp.eval() = 0.0f;
+  eq Number.eval() = getValue();
+  eq AddExp.eval() = getA().eval() + getB().eval();
+  eq MulExp.eval() = getA().eval() * getB().eval();
+  eq DivExp.eval() = getA().eval() / getB().eval();
+  eq MinusExp.eval() = getA().eval() - getB().eval();
+  eq UnaryMinusExp.eval() = (-1) * getA().eval();
+  eq Var.eval() = getDef().getValue();
+}

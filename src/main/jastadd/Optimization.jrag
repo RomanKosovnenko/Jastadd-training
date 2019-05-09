@@ -1,0 +1,30 @@
+aspect Optimization {
+  syn boolean Exp.isConstantSubtree();
+  eq Number.isConstantSubtree() = true;
+  eq AddExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
+  eq MulExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
+  eq DivExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
+  eq MinusExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
+  eq UnaryMinusExp.isConstantSubtree() = getA().isConstantSubtree();
+  eq Var.isConstantSubtree() = false;
+
+   rewrite Exp {
+   when ((this.getClass() != Number.class) && isConstantSubtree())
+     to Number {
+        return new Number(eval());
+     }
+   }
+
+  syn boolean MulExp.isMulWithZero();
+
+  eq MulExp.isMulWithZero() = ((getA().getClass() == Number.class) && getA().eval() == 0f) || ((getB().getClass() == Number.class) && getB().eval() == 0f);
+
+
+   rewrite MulExp {
+     when ( isMulWithZero() )
+     to Number {
+       return new Number(0f);
+     }
+   }
+
+}
