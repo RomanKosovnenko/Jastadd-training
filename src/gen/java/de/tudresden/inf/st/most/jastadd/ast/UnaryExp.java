@@ -114,6 +114,28 @@ public abstract class UnaryExp extends Exp implements Cloneable {
   public Exp getANoTransform() {
     return (Exp) getChildNoTransform(0);
   }
+  /**
+   * @attribute syn
+   * @aspect Analysis
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Analysis", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20")
+  public boolean DefInExp(String name) {
+    boolean DefInExp_String_value = getA().DefInExp(name);
+    return DefInExp_String_value;
+  }
+  /**
+   * @attribute syn
+   * @aspect Optimization
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Optimization", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2")
+  public boolean isConstantSubtree() {
+    boolean isConstantSubtree_value = getA().isConstantSubtree();
+    return isConstantSubtree_value;
+  }
   /** @apilevel internal */
   public ASTNode rewriteTo() {
     return super.rewriteTo();

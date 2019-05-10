@@ -84,6 +84,14 @@ public abstract class Exp extends ASTNode<ASTNode> implements Cloneable {
   public abstract Exp treeCopy();
   /**
    * @attribute syn
+   * @aspect Analysis
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Analysis", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20")
+  public abstract boolean DefInExp(String name);
+  /**
+   * @attribute syn
    * @aspect Evaluation
    * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Evaluation.jrag:3
    */
@@ -100,14 +108,14 @@ public abstract class Exp extends ASTNode<ASTNode> implements Cloneable {
   public abstract boolean isConstantSubtree();
   /** @apilevel internal */
   public ASTNode rewriteTo() {
-    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:12
+    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:9
     if ((this.getClass() != Number.class) && isConstantSubtree()) {
       return rewriteRule0();
     }
     return super.rewriteTo();
   }
   /**
-   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:12
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:9
    * @apilevel internal
    */
   private Number rewriteRule0() {
@@ -116,7 +124,7 @@ public abstract class Exp extends ASTNode<ASTNode> implements Cloneable {
      }  }
   /** @apilevel internal */
   public boolean canRewrite() {
-    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:12
+    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:9
     if ((this.getClass() != Number.class) && isConstantSubtree()) {
       return true;
     }

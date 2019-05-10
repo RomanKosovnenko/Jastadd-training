@@ -202,6 +202,22 @@ public class Def extends ASTNode<ASTNode> implements Cloneable {
   }
   /**
    * @attribute syn
+   * @aspect Analysis
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:9
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Analysis", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:9")
+  public boolean DefInExp(String name) {
+    {
+        ASTNode p = this;
+        while(p.parent != null) {
+            p = p.parent;
+        }
+        return !((Root)p).getExp().DefInExp(name);
+      }
+  }
+  /**
+   * @attribute syn
    * @aspect Printing
    * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Printing.jrag:3
    */
@@ -218,5 +234,25 @@ public class Def extends ASTNode<ASTNode> implements Cloneable {
   /** @apilevel internal */
   public boolean canRewrite() {
     return false;
+  }
+  protected void collect_contributors_Root_unusedDefs(Root _root, java.util.Map<ASTNode, java.util.Set<ASTNode>> _map) {
+    // @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:5
+    if (DefInExp(this.getName())) {
+      {
+        java.util.Set<ASTNode> contributors = _map.get(_root);
+        if (contributors == null) {
+          contributors = new java.util.LinkedHashSet<ASTNode>();
+          _map.put((ASTNode) _root, contributors);
+        }
+        contributors.add(this);
+      }
+    }
+    super.collect_contributors_Root_unusedDefs(_root, _map);
+  }
+  protected void contributeTo_Root_unusedDefs(java.util.Set<Def> collection) {
+    super.contributeTo_Root_unusedDefs(collection);
+    if (DefInExp(this.getName())) {
+      collection.add(this);
+    }
   }
 }

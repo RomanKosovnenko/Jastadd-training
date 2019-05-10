@@ -1,11 +1,8 @@
 aspect Optimization {
   syn boolean Exp.isConstantSubtree();
   eq Number.isConstantSubtree() = true;
-  eq AddExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
-  eq MulExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
-  eq DivExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
-  eq MinusExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
-  eq UnaryMinusExp.isConstantSubtree() = getA().isConstantSubtree();
+  eq BinExp.isConstantSubtree() = getA().isConstantSubtree() && getB().isConstantSubtree();
+  eq UnaryExp.isConstantSubtree() = getA().isConstantSubtree();
   eq Var.isConstantSubtree() = false;
 
    rewrite Exp {

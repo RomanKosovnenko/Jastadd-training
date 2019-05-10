@@ -180,6 +180,21 @@ public class Var extends Exp implements Cloneable {
   }
   /**
    * @attribute syn
+   * @aspect Analysis
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Analysis", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20")
+  public boolean DefInExp(String name) {
+    {
+        if(this.getName().equals(name)) {
+            return true;
+        }
+        return false;
+      }
+  }
+  /**
+   * @attribute syn
    * @aspect Evaluation
    * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Evaluation.jrag:3
    */
@@ -198,7 +213,7 @@ public class Var extends Exp implements Cloneable {
   @ASTNodeAnnotation.Source(aspect="NameResolution", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\NameResolution.jrag:3")
   public Def getDef() {
     {
-        ASTNode p = (ASTNode)this;
+        ASTNode p = this;
         while(p.parent != null) {
             p = p.parent;
         }

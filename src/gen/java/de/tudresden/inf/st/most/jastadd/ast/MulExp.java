@@ -202,21 +202,10 @@ public class MulExp extends BinExp implements Cloneable {
   /**
    * @attribute syn
    * @aspect Optimization
-   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:15
    */
   @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="Optimization", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2")
-  public boolean isConstantSubtree() {
-    boolean isConstantSubtree_value = getA().isConstantSubtree() && getB().isConstantSubtree();
-    return isConstantSubtree_value;
-  }
-  /**
-   * @attribute syn
-   * @aspect Optimization
-   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:18
-   */
-  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="Optimization", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:18")
+  @ASTNodeAnnotation.Source(aspect="Optimization", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:15")
   public boolean isMulWithZero() {
     boolean isMulWithZero_value = ((getA().getClass() == Number.class) && getA().eval() == 0f) || ((getB().getClass() == Number.class) && getB().eval() == 0f);
     return isMulWithZero_value;
@@ -234,14 +223,14 @@ public class MulExp extends BinExp implements Cloneable {
   }
   /** @apilevel internal */
   public ASTNode rewriteTo() {
-    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:24
+    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:21
     if (isMulWithZero()) {
       return rewriteRule0();
     }
     return super.rewriteTo();
   }
   /**
-   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:24
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:21
    * @apilevel internal
    */
   private Number rewriteRule0() {
@@ -250,7 +239,7 @@ public class MulExp extends BinExp implements Cloneable {
      }  }
   /** @apilevel internal */
   public boolean canRewrite() {
-    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:24
+    // Declared at D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:21
     if (isMulWithZero()) {
       return true;
     }

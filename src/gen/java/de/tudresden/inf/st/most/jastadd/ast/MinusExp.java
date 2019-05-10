@@ -201,17 +201,6 @@ public class MinusExp extends BinExp implements Cloneable {
   }
   /**
    * @attribute syn
-   * @aspect Optimization
-   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2
-   */
-  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
-  @ASTNodeAnnotation.Source(aspect="Optimization", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Optimization.jrag:2")
-  public boolean isConstantSubtree() {
-    boolean isConstantSubtree_value = getA().isConstantSubtree() && getB().isConstantSubtree();
-    return isConstantSubtree_value;
-  }
-  /**
-   * @attribute syn
    * @aspect Printing
    * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Printing.jrag:3
    */

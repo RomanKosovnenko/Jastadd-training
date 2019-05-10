@@ -156,6 +156,17 @@ public class Number extends Exp implements Cloneable {
   }
   /**
    * @attribute syn
+   * @aspect Analysis
+   * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20
+   */
+  @ASTNodeAnnotation.Attribute(kind=ASTNodeAnnotation.Kind.SYN)
+  @ASTNodeAnnotation.Source(aspect="Analysis", declaredAt="D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Analysis.jrag:20")
+  public boolean DefInExp(String name) {
+    boolean DefInExp_String_value = false;
+    return DefInExp_String_value;
+  }
+  /**
+   * @attribute syn
    * @aspect Evaluation
    * @declaredat D:\\Projects\\TUDwork\\jastadd_task\\src\\main\\jastadd\\Evaluation.jrag:3
    */

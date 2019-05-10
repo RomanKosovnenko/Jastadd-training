@@ -1,9 +1,8 @@
 aspect NameResolution {
 
   syn Def Var.getDef();
-  // eq Var.getDef() = new Def("d", 1.1f);
   eq Var.getDef() {
-    ASTNode p = (ASTNode)this;
+    ASTNode p = this;
     while(p.parent != null) {
         p = p.parent;
     }
