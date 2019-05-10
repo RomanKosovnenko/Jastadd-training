@@ -6,22 +6,15 @@ aspect Analysis {
   when DefInExp(this.getName())
   to Root.unusedDefs();
   // TODO additional helper attribute may be needed!
-  syn boolean Def.DefInExp(String name);
-  eq Def.DefInExp(String name) {
-    ASTNode p = this;
-    while(p.parent != null) {
-        p = p.parent;
-    }
-    return !((Root)p).getExp().DefInExp(name);
+  inh boolean Def.DefInExp(String name);
+  eq Root.getDef(int i).DefInExp(String name) {
+      return !getExp().DefInExp(name);
   }
-
-
 
   syn boolean Exp.DefInExp(String name);
   eq Number.DefInExp(String name) = false;
   eq BinExp.DefInExp(String name) = getA().DefInExp(name) || getB().DefInExp(name);
   eq UnaryExp.DefInExp(String name) = getA().DefInExp(name);
-  //eq Def.DefInExp(String name) = false;
   eq Var.DefInExp(String name) {
     if(this.getName().equals(name)) {
         return true;
