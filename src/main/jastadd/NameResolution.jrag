@@ -1,17 +1,10 @@
 aspect NameResolution {
-
-  syn Def Var.getDef();
-  eq Var.getDef() {
-    ASTNode p = this;
-    while(p.parent != null) {
-        p = p.parent;
-    }
-    for (ASTNode def : p.children[0].children) {
-        if(def == null) continue;
-        if( ((Def)def).getName().equals(getName()) ) {
-            return (Def)def;
-        }
-    }
-    return new Def();
+  syn Def Var.getDef() = getDef(getName());
+  inh Def Var.getDef(String name);
+  eq Root.getExp().getDef(String name) {
+      for (Def d : getDefList()) {
+        if (d.getName().equals(name)) return d;
+      }
+      return null;
   }
 }
