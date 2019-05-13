@@ -5,16 +5,23 @@ aspect Optimization {
   eq UnaryExp.isConstantSubtree() = getA().isConstantSubtree();
   eq Var.isConstantSubtree() = false;
 
-   rewrite Exp {
-   when ((this.getClass() != Number.class) && isConstantSubtree())
+   rewrite BinExp {
+   when (isConstantSubtree())
      to Number {
         return new Number(eval());
      }
    }
 
+   rewrite UnaryExp {
+       when (isConstantSubtree())
+        to Number {
+           return new Number(eval());
+       }
+   }
+
   syn boolean MulExp.isMulWithZero();
 
-  eq MulExp.isMulWithZero() = ((getA().getClass() == Number.class) && getA().eval() == 0f) || ((getB().getClass() == Number.class) && getB().eval() == 0f);
+  eq MulExp.isMulWithZero() = (getA().isConstantSubtree() && getA().eval() == 0f) || (getB().isConstantSubtree() && getB().eval() == 0f);
 
 
    rewrite MulExp {
