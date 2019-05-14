@@ -1,5 +1,4 @@
 aspect Evaluation {
-
   syn float Exp.eval();
   eq Number.eval() = getValue();
   eq AddExp.eval() = getA().eval() + getB().eval();

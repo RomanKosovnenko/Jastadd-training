@@ -1,24 +1,13 @@
 aspect Analysis {
-
   coll java.util.Set<Def> Root.unusedDefs() [new java.util.HashSet<Def>()] with add root Root;
-  // TODO contribution statement
   Def contributes this
   when DefInExp(this.getName())
   to Root.unusedDefs();
-  // TODO additional helper attribute may be needed!
   inh boolean Def.DefInExp(String name);
-  eq Root.getDef(int i).DefInExp(String name) {
-      return !getExp().DefInExp(name);
-  }
-
+  eq Root.getDef(int i).DefInExp(String name) = !getExp().DefInExp(name);
   syn boolean Exp.DefInExp(String name);
   eq Number.DefInExp(String name) = false;
   eq BinExp.DefInExp(String name) = getA().DefInExp(name) || getB().DefInExp(name);
   eq UnaryExp.DefInExp(String name) = getA().DefInExp(name);
-  eq Var.DefInExp(String name) {
-    if(this.getName().equals(name)) {
-        return true;
-    }
-    return false;
-  }
+  eq Var.DefInExp(String name) = this.getName().equals(name);
 }
